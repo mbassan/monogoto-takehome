@@ -1,0 +1,134 @@
+.button {
+	border-radius: 3px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.button::-moz-focus-inner {
+  border: 0;
+}
+.button:focus {
+  outline: none !important;
+}
+
+.button img {
+  height: 15px;
+  margin-bottom: -2px;
+}
+
+.button > * {
+  margin-right: 5px;
+}
+.button :last-child {
+  margin-right: 0;
+}
+
+/* variants */
+.primary{
+	background-color: rgb(var(--primary-color));
+  color: rgb(var(--bg-color));
+  border: 1px solid rgb(var(--primary-color));
+}
+.primary:hover{
+  filter: brightness(110%);
+}
+.secondary{
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--txt-color));
+  border: 1px solid rgba(var(--txt-color),0.2);
+}
+.default{
+  background-color: rgba(var(--txt-color),0.03);
+  color: rgb(var(--txt-color));
+  border: 1px solid rgba(var(--txt-color),0.2);
+}
+.secondary:hover,
+.default:hover{
+  filter: brightness(98%);
+}
+.action{
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--txt-color));
+  border: 1px solid rgba(var(--txt-color), 0.3);
+}
+.action:hover{
+  filter: brightness(98%);
+}
+.success{
+  background-color: var(--success-color);
+  color: rgb(var(--bg-color));
+  border: 1px solid var(--success-color);
+}
+.success:hover{
+  filter: brightness(98%);
+}
+.warning{
+  background-color: var(--warning-color);
+  color: rgb(var(--txt-color));
+  border: 1px solid var(--warning-color);
+}
+.warning:hover{
+  filter: brightness(98%);
+}
+.danger{
+  background-color: rgb(var(--danger-color));
+  color: rgb(var(--bg-color));
+  border: 1px solid rgb(var(--danger-color));
+}
+.danger:hover{
+  filter: brightness(110%);
+}
+.panel {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 58px;
+  cursor: pointer;
+  color: rgba(var(--txt-color), 0.55);
+  display: inline-block;
+  border-left: 1px solid rgba(var(--txt-color),0.15);
+  border-right: none;
+  border-bottom: 0;
+  border-top: 0;
+  border-radius: 0;
+  height: auto !important;
+  padding: 0 20px;
+  background-color: transparent;
+}
+.panel:hover {
+  color: rgb(var(--txt-color));
+  transition: color 200ms;
+  background-color: rgba(var(--txt-color),0.03);
+}
+
+/* sizes */
+.small{
+  height:26px;
+}
+.medium{
+  height: 34px;
+}
+.large{
+  height: 46px;
+}
+
+/* display types */
+.inline{
+  display: inline-block;
+}
+.block{
+  display: block;
+  width: 100%;
+}
+
+.icon{
+  font-size: 65%;
+}
+.iconButton{
+  font-size: 87.5%;
+}
+.iconButton.medium{
+  font-size: 15px;
+}

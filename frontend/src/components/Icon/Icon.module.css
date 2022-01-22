@@ -1,0 +1,41 @@
+.ic{
+
+}
+
+/* variants */
+.primary{
+  color: rgb(var(--bg-color));
+}
+.secondary{
+  color: rgb(var(--txt-color));
+}
+.action{
+  color: rgb(var(--txt-color));
+}
+.success{
+  color: var(--success-color);
+}
+.warning{
+  color: var(--warning-color);
+}
+.danger{
+  color: rgb(var(--danger-color));
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.clickable:hover{
+  opacity: 0.8;
+}
+
+.fa {
+  transform: scale(1,1.1);
+  -webkit-transform: scale(1,1.1);
+  -moz-transform: scale(1,1.1);
+  -ms-transform: scale(1,1.1);
+  -o-transform: scale(1,1.1);
+  position: relative;
+  top: -1px;
+}

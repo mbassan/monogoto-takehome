@@ -1,0 +1,78 @@
+.alert{
+  border-radius: 3px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding: 15px 20px;
+  font-weight: 500;
+  color: #FFF;
+  animation: slidein 400ms forwards;
+}
+.alert.error{
+  background-color: rgb(var(--danger-color));
+}
+.alert.warning{
+  background-color: var(--warning-color);
+}
+.alert.success{
+  background-color: var(--success-color);
+}
+.alertContent{
+  padding-left: 5px;
+  flex-grow: 1;
+}
+.alert.hide{
+  display: none;
+}
+.alert .closeIcon{
+  color: #FFF;
+  margin-left: 10px;
+}
+.appear {
+
+}
+.appearActive {
+
+}
+.appearDone {
+
+}
+.enter {
+
+}
+.enterActive {
+
+}
+.enterDone {
+
+}
+.exit {
+
+}
+.exitActive {
+
+}
+.exitDone {
+
+}
+
+@keyframes slidein {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

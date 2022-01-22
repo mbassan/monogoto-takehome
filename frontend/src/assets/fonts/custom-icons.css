@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('icomoon.eot?r4chan');
+  src:  url('icomoon.eot?r4chan#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?r4chan') format('truetype'),
+    url('icomoon.woff?r4chan') format('woff'),
+    url('icomoon.svg?r4chan#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-layout-dashboard:before {
+  content: "\e909";
+}
+.icon-submit:before {
+  content: "\e900";
+}
+.icon-reply:before {
+  content: "\e901";
+}
+.icon-send:before {
+  content: "\e902";
+}
+.icon-view:before {
+  content: "\e903";
+}
+.icon-location-pin:before {
+  content: "\e904";
+}
+.icon-label:before {
+  content: "\e905";
+}
+.icon-trash:before {
+  content: "\e906";
+}
+.icon-save:before {
+  content: "\e907";
+}
+.icon-refresh:before {
+  content: "\e908";
+}
+.icon-plus-circle:before {
+  content: "\e909";
+}
+.icon-stopwatch:before {
+  content: "\e90a";
+}
+.icon-expand:before {
+  content: "\e90b";
+}
+.icon-edit:before {
+  content: "\e90c";
+}
+.icon-filter:before {
+  content: "\e90d";
+}
+.icon-link:before {
+  content: "\e90e";
+}
+.icon-36:before {
+  content: "\e90f";
+}
+.icon-sync-warning:before {
+  content: "\e910";
+}
+.icon-chart-bar:before {
+  content: "\e911";
+}
+.icon-common-file:before {
+  content: "\e912";
+}
+.icon-house:before {
+  content: "\e913";
+}
+.icon-cog:before {
+  content: "\e914";
+}
+.icon-navigation-menu:before {
+  content: "\e915";
+}
+.icon-search:before {
+  content: "\e916";
+}
+.icon-search-alt:before {
+  content: "\e917";
+}
+.icon-tool-box:before {
+  content: "\e918";
+}
+.icon-keyboard-down:before {
+  content: "\e91c";
+}
+.icon-alert-circle:before {
+  content: "\e91d";
+}
+.icon-checklist:before {
+  content: "\e91e";
+}
+.icon-clock:before {
+  content: "\e91f";
+}
+.icon-hammer-wench:before {
+  content: "\e920";
+}

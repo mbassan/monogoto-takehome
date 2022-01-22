@@ -1,0 +1,61 @@
+.bigFinger {
+  background-image: url('../../ui/assets/images/big-finger.png');
+  width: 412px;
+  height: 431px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.loginFormWrapper {
+  width: 381px;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.loginFormContainer {
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 381px;
+  z-index: 2;
+}
+.inputs > *{
+  margin-bottom: 15px;
+}
+.inputs button{
+  margin-top: 15px;
+}
+
+.loginFormWrapper .logo {
+  margin-bottom: 5px;
+}
+
+.loginFormWrapper .insertCodeTitle {
+  color: #091E42;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.loginFormWrapper .subtext {
+  font-size: 20px;
+  color: #23262F;
+  margin-bottom: 50px;
+}
+.loginFormWrapper a{
+  font-weight: 600;
+}
+
+.loginFormWrapper .toReset a{
+  text-align: left;
+  display: block;
+  margin-top: -5px;
+  margin-bottom: 20px;
+}
+.error{
+  display: flex;
+  margin-bottom: 15px;
+}

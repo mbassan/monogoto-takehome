@@ -1,0 +1,18 @@
+.snackbar{
+  display: none;
+  transition: display 400ms;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  width: 400px;
+  z-index: 102;
+}
+.snackbar.visible{
+  display: flex;
+  flex-direction: column;
+}
+.snackbar > * {
+  box-shadow: 2px 2px 5px 0 rgba(var(--txt-color),0.5);
+  margin-bottom: 5px;
+}

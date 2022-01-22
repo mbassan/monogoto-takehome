@@ -1,0 +1,25 @@
+.homeGridContainer{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-gap: 5px;
+}
+.homeTitle {
+  height: 58px;
+  line-height: 58px;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 20px;
+}
+.avatar{
+  margin-right: 5px;
+}
+.bellIcon{
+  color: var(--notification-color) !important;
+}
+
+@media (max-width: 1000px) { 
+  .homeGridContainer {
+    grid-template-columns: 1fr;
+  }
+}
