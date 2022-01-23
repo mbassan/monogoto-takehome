@@ -1,4 +1,4 @@
-import countries from 'ui/components/CountryPicker/listOfCountries';
+import countries from 'components/CountryPicker/listOfCountries';
 
 export default function getCountryName(countryCode) {
   const country = countries.filter((item) => item.value === countryCode);

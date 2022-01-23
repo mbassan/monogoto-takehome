@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import {
-  HashRouter as Router,
-} from 'react-router-dom';
-import App from 'App';
+import { HashRouter as Router } from 'react-router-dom';
 import * as serviceWorker from 'serviceWorker';
-import { setOptions } from 'ui/utilities/request';
+import { setOptions } from 'utilities/request';
+import App from 'App';
+import './index.css';
 
 const SERVER_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 // TODO: Maybe create a configuration module that will hold some

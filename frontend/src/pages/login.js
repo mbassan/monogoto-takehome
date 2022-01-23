@@ -2,9 +2,9 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { GlobalStateContext } from 'context/GlobalContext';
 import actions from 'context/actions/globalActions';
-import request from 'ui/utilities/request';
-import checkLogin from 'ui/utilities/checkLogin';
-import { LoginForm } from 'containers/Login';
+import request from 'utilities/request';
+import checkLogin from 'utilities/checkLogin';
+import LoginForm from 'containers/Login';
 
 export default function Login() {
   const { dispatch, state } = React.useContext(GlobalStateContext);
@@ -23,22 +23,23 @@ export default function Login() {
     });
   }, [dispatch, history, state]);
 
-  async function login({
-    username,
-    password,
-  }) {
+  async function login({ symbol }) {
     dispatch({ type: actions.SET_LOADING, payload: true });
     setShowErrorMessage(false);
     try {
-      const result = await request('post', '/auth/login', { username, password });
+      const result = await request('post', '/auth/login', {
+        symbol,
+      });
       if (!result.data || !result.data.requestId) {
         throw new Error(result);
       }
 
       dispatch({ type: actions.SET_LOADING, payload: false });
-      history.push(`/mfa/${result.data.requestId}${result.data.mfaToken ? `?mfatoken=${result.data.mfaToken}` : ''}`);
+      history.push('/dashboard');
     } catch (error) {
-      setErrorMessage('Invalid username or password supplied');
+      setErrorMessage(
+        'Invalid symbol or did not have positive change. Only we know which of those two.',
+      );
       setShowErrorMessage(true);
       dispatch({ type: actions.SET_LOADING, payload: false });
     }

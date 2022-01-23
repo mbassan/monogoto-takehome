@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'containers/PrivateRoute';
 import PageLayout from 'containers/Layout';
 import LoginPage from 'pages/login';
-import HomePage from 'pages/home';
+import DashboardPage from 'pages/dashboard';
 import {
   INITIAL_STATE,
   GlobalStateContext,
@@ -13,6 +13,7 @@ import { NotificationsProvider } from 'context/NotificationsContext';
 import 'assets/fonts/roboto.css';
 import 'assets/fonts/custom-icons.css';
 import 'assets/fonts/fontawesome.all.min.css';
+import 'assets/css/theme.css';
 
 function App() {
   const [globalState, dispatchToGlobal] = React.useReducer(
@@ -31,7 +32,7 @@ function App() {
               <LoginPage />
             </Route>
             <PrivateRoute path="/dashboard">
-              <HomePage />
+              <DashboardPage />
             </PrivateRoute>
           </Switch>
         </PageLayout>

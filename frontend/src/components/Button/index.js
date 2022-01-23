@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'ui/components/Icon';
+import Icon from 'components/Icon';
 import clsx from 'clsx';
 import styles from './Button.module.css';
 
@@ -23,7 +23,10 @@ export default function Button({
       <elem.type
         {...elem.props}
         key={i}
-        className={elem.type === Icon && clsx(styles.icon, iconButton && styles.iconButton)}
+        className={
+          elem.type === Icon &&
+          clsx(styles.icon, iconButton && styles.iconButton)
+        }
       />
     );
   }

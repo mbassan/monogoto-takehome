@@ -1,0 +1,111 @@
+.sidebar {
+  background-color: rgb(var(--nav-bg-color));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 72px;
+  transition: min-width 400ms ease;
+  border-right: var(--nav-border);
+  box-shadow: 0 1px 3px 0 rgba(var(--txt-color),0.04);
+
+}
+.expanded {
+  min-width: 269px;
+}
+.sidebarItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  height: 54px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: rgb(var(--sidebar-txt-color-inactive));
+  opacity: 0.5;
+  font-size: 22px;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  transition: font-size 400ms ease;
+}
+.sidebarItemInner{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: 25px;
+  transition: flex-basis 400ms ease;
+  overflow: hidden;
+}
+.expanded .sidebarItemInner{
+  flex-basis: 194px;
+}
+.expanded .sidebarItem {
+  height: 56px;
+  font-size: 16px;
+  opacity: 0.6;
+}
+.sidebarItem:hover {
+  opacity: 1;
+}
+.active {
+  opacity: 1;
+  color: rgb(var(--sidebar-txt-color));
+  background-color: rgba(var(--sidebar-txt-color), 0.1);
+  border-left: 3px solid rgb(var(--sidebar-txt-color));
+}
+.active:hover {
+  color: rgb(var(--sidebar-txt-color));
+}
+.sidebarIcon {
+  flex-basis: 40px;
+}
+.hamburger {
+  height: 77px;
+  cursor: pointer;
+  color: rgb(var(--sidebar-txt-color));
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 400ms ease, padding-left 400ms ease;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  padding-left: 24px;
+}
+.expanded .hamburger {
+  opacity: 1;
+  font-weight: 500;
+  padding-left: 38px;
+}
+.bars{
+  transition: transform 400ms ease;
+  transform-origin: 50% 50% 0;
+}
+.expanded .bars{
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.sidebarItemText {
+  width: 0;
+  display: inline-block;
+  transition: width 400ms ease;
+  font-size: 16px;
+  overflow: hidden;
+}
+.expanded .sidebarItemText {
+  width: 200px;
+  transition-delay: 0;
+}
+
+@media (max-width: 1200) {
+  nav.sidebar{
+    position: absolute;
+  }
+}
+
+

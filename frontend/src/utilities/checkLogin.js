@@ -1,6 +1,6 @@
-import request, { setUser, destroyToken } from 'ui/utilities/request';
-import checkPermission from 'ui/utilities/checkPermission';
-import isLoggedIn from 'ui/utilities/isLoggedIn';
+import request, { setUser, destroyToken } from 'utilities/request';
+import checkPermission from 'utilities/checkPermission';
+import isLoggedIn from 'utilities/isLoggedIn';
 
 export default async function checkLogin({
   state,
@@ -8,7 +8,7 @@ export default async function checkLogin({
   actions,
   history,
   permission,
-  expectLoggedIn, // false if we are on /login or /mfa, true otherwise
+  expectLoggedIn,
   isClient,
 }) {
   // if login status is already as expected
@@ -38,7 +38,7 @@ export default async function checkLogin({
       throw new Error('No user data returned.');
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     // token no longer valid
     dispatch({ type: actions.SET_USER, payload: {} });
     if (expectLoggedIn) {

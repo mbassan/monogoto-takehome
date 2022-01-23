@@ -1,0 +1,47 @@
+:root {
+  --bg-color: 255, 255, 255;
+  --txt-color: 43, 54, 70;
+  --primary-color: 34, 52, 107;
+  --danger-color: 237, 37, 78;
+  --warning-color: #ECC518;
+  --success-color: #91D56C;
+  --notification-color: #9D9DF5;
+  --highlight-color: #6d83cc;
+  --top-logo-bg-color: rgba(var(--bg-color), 0.1);
+  --top-txt-color: var(--bg-color);
+  --top-icon-color: var(--bg-color);
+  --top-search-bg-color: rgba(var(--bg-color), 0.2);
+  --top-search-border-color: rgba(var(--bg-color), 0.8);
+  --top-search-border-color-inactive: transparent;
+  --nav-bg-color: var(--primary-color);
+  --nav-border: rgb(var(--primary-color));
+  --sidebar-txt-color: var(--bg-color);
+  --sidebar-txt-color-inactive: var(--bg-color);
+  --footer-bg-color: var(--primary-color);
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FBFDFF;
+  font-size: 14px;
+}
+
+button{
+  font-family: 'Roboto', sans-serif;
+}
+
+input{
+  font-family: 'Roboto', sans-serif;
+}
+
+select{
+  font-family: 'Roboto', sans-serif;
+}
+
+textarea{
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: #2B3646;
+}
