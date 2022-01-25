@@ -1,0 +1,492 @@
+[
+  {
+    "id": "5a455541.3fdcac",
+    "type": "tab",
+    "label": "Auth",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "7e901bb7a23ea0f0",
+    "type": "tab",
+    "label": "Price Updates",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "81add3b35bbcc05c",
+    "type": "websocket-listener",
+    "path": "/ws/publishMessage",
+    "wholemsg": "false"
+  },
+  {
+    "id": "b67cd1dc57444b6e",
+    "type": "websocket-client",
+    "path": "wss://stream.binance.com:9443/ws/BTCUSDT@aggTrade",
+    "tls": "",
+    "wholemsg": "false",
+    "hb": "3"
+  },
+  {
+    "id": "a43b9c375d82c03f",
+    "type": "JsonWebToken_config",
+    "name": "Default token",
+    "secret": "PThLSZNgcJ4sDqd7PAqeQAv7kmKjT6VU"
+  },
+  {
+    "id": "a9919ab8.9f0ea8",
+    "type": "websocket-listener",
+    "path": "/ws/websocket-listener",
+    "wholemsg": "false"
+  },
+  {
+    "id": "766defbc8fc9b1aa",
+    "type": "http in",
+    "z": "5a455541.3fdcac",
+    "name": "Login endpoint",
+    "url": "/auth/login",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 140,
+    "y": 100,
+    "wires": [["4a1ed039c3b68038"]]
+  },
+  {
+    "id": "0fe499e211070d1c",
+    "type": "JsonWebToken",
+    "z": "5a455541.3fdcac",
+    "name": "Login",
+    "tokenconfig": "a43b9c375d82c03f",
+    "x": 410,
+    "y": 300,
+    "wires": [["65dc087d020cef80"]]
+  },
+  {
+    "id": "65dc087d020cef80",
+    "type": "change",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "token",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 580,
+    "y": 300,
+    "wires": [["d8484918b54ee567"]]
+  },
+  {
+    "id": "d8484918b54ee567",
+    "type": "http response",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "statusCode": "200",
+    "headers": {},
+    "x": 880,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "2fc57ef1196b43a5",
+    "type": "http in",
+    "z": "5a455541.3fdcac",
+    "name": "Verify endpoint",
+    "url": "/auth/user-info",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 200,
+    "y": 360,
+    "wires": [["041a033d9187888d"]]
+  },
+  {
+    "id": "f2c5bfc2ebcbf6c3",
+    "type": "JsonWebToken",
+    "z": "5a455541.3fdcac",
+    "name": "Auth",
+    "tokenconfig": "a43b9c375d82c03f",
+    "x": 570,
+    "y": 360,
+    "wires": [["b618bfa49efa4dda", "ce771de99bc17dd7"]]
+  },
+  {
+    "id": "041a033d9187888d",
+    "type": "function",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "func": "msg.token = msg.req.headers.authorization;\nnode.warn(msg.token)\nreturn msg; ",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 360,
+    "wires": [["f2c5bfc2ebcbf6c3"]]
+  },
+  {
+    "id": "b618bfa49efa4dda",
+    "type": "function",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "func": "node.warn(msg.token)\nif (msg.token && typeof msg.token === 'string') {\n    msg.payload = 'OK';\n} else {\n    msg.payload = '';\n}\n\nreturn msg; ",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 720,
+    "y": 360,
+    "wires": [["6caf0fb9a14f8f77"]]
+  },
+  {
+    "id": "6caf0fb9a14f8f77",
+    "type": "http response",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 870,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "ce771de99bc17dd7",
+    "type": "debug",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 890,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "4a1ed039c3b68038",
+    "type": "function",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "func": "const symbols = global.get('symbols');\n\nif (symbols) {\n    const loginSymbol = symbols.data.find(symbol => symbol.symbol === msg.payload.symbol.toUpperCase())\n    node.warn(loginSymbol)\n    if (loginSymbol && parseFloat(loginSymbol.priceChange) > 0) {\n        msg.payload.isValid = true   \n    } else {\n        msg.payload.isInvalid = true\n        msg.payload.found = loginSymbol\n    }\n} else {\n    msg.payload = \"Symbols not loaded\"\n}\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 340,
+    "y": 100,
+    "wires": [["5d85b98cd9b47d04"]]
+  },
+  {
+    "id": "5d85b98cd9b47d04",
+    "type": "switch",
+    "z": "5a455541.3fdcac",
+    "name": "Valid Symbol",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "hask",
+        "v": "isValid",
+        "vt": "str"
+      },
+      {
+        "t": "hask",
+        "v": "isInvalid",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 570,
+    "y": 100,
+    "wires": [["9f5e67418a9102d3"], ["683a9650256e33d9"]]
+  },
+  {
+    "id": "9f5e67418a9102d3",
+    "type": "function",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "func": "msg.payload = { symbol: msg.payload.symbol }\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 270,
+    "y": 300,
+    "wires": [["0fe499e211070d1c"]]
+  },
+  {
+    "id": "683a9650256e33d9",
+    "type": "function",
+    "z": "5a455541.3fdcac",
+    "name": "",
+    "func": "msg.payload = \"\"\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 580,
+    "y": 220,
+    "wires": [["d8484918b54ee567"]]
+  },
+  {
+    "id": "e9a618f6c3b74518",
+    "type": "websocket in",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Binance In",
+    "server": "",
+    "client": "b67cd1dc57444b6e",
+    "x": 260,
+    "y": 500,
+    "wires": [["c252c3af339aa3c9"]]
+  },
+  {
+    "id": "76f0484ef31c96aa",
+    "type": "websocket out",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Binance Out",
+    "server": "",
+    "client": "b67cd1dc57444b6e",
+    "x": 490,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "fbbe74a65ba5d137",
+    "type": "inject",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Subscribe",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "3",
+    "topic": "",
+    "payload": "{   \"method\": \"SUBSCRIBE\",   \"params\": [     \"btcusdt@aggTrade\",     \"btcusdt@depth\"   ],   \"id\": 1 }",
+    "payloadType": "str",
+    "x": 270,
+    "y": 380,
+    "wires": [["7a9be4e97cdde06b", "76f0484ef31c96aa"]]
+  },
+  {
+    "id": "7153944628da0ff8",
+    "type": "debug",
+    "z": "7e901bb7a23ea0f0",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 790,
+    "y": 560,
+    "wires": []
+  },
+  {
+    "id": "7a9be4e97cdde06b",
+    "type": "debug",
+    "z": "7e901bb7a23ea0f0",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 490,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "30d062b238a87e83",
+    "type": "http request",
+    "z": "7e901bb7a23ea0f0",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "https://api2.binance.com/api/v3/ticker/24hr",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "x": 470,
+    "y": 120,
+    "wires": [["d75da092e74dd385"]]
+  },
+  {
+    "id": "996f2a24caad623d",
+    "type": "debug",
+    "z": "7e901bb7a23ea0f0",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 830,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "6bfebb900189b0ab",
+    "type": "inject",
+    "z": "7e901bb7a23ea0f0",
+    "name": "GET Symbols",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "30",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "get_symbols",
+    "payload": "",
+    "payloadType": "date",
+    "x": 280,
+    "y": 120,
+    "wires": [["30d062b238a87e83"]]
+  },
+  {
+    "id": "db759d241a1f53bf",
+    "type": "function",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Set Symbols Global",
+    "func": "\n\nglobal.set('symbols',msg.payload);",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 200,
+    "wires": [[]]
+  },
+  {
+    "id": "d75da092e74dd385",
+    "type": "function",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Set Message",
+    "func": "\nconst data = JSON.parse(msg.payload);\nmsg.payload = {\n  event: 'symbols',\n  data: data.slice(0, 100),  \n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 120,
+    "wires": [["996f2a24caad623d", "b08ed7370b68e661", "db759d241a1f53bf"]]
+  },
+  {
+    "id": "b08ed7370b68e661",
+    "type": "websocket out",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Out",
+    "server": "81add3b35bbcc05c",
+    "client": "",
+    "x": 910,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "c252c3af339aa3c9",
+    "type": "function",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Set Global",
+    "func": "\nconst data = JSON.parse(msg.payload);\n\nif (data.e === 'depthUpdate') {\n\n  msg.payload = {\n    event: 'depth',\n    data: {\n        bid: data.b.slice(0,20),\n        ask: data.a.slice(0,20),\n    } \n  }\n  global.set('depth',msg.payload);\n} else {\n    msg.payload = {\n    event: 'prices',\n    data,\n  }\n  global.set('prices',msg.payload);\n}\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 560,
+    "wires": [["7153944628da0ff8"]]
+  },
+  {
+    "id": "49405a36705e7639",
+    "type": "inject",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Send Prices",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "1",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "5",
+    "topic": "global_prices",
+    "payload": "prices",
+    "payloadType": "global",
+    "x": 740,
+    "y": 400,
+    "wires": [["b08ed7370b68e661"]]
+  },
+  {
+    "id": "156f7fec3b52b577",
+    "type": "inject",
+    "z": "7e901bb7a23ea0f0",
+    "name": "Send Depth",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "10",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "5",
+    "topic": "global_depth",
+    "payload": "depth",
+    "payloadType": "global",
+    "x": 730,
+    "y": 320,
+    "wires": [["b08ed7370b68e661"]]
+  }
+]
