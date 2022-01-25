@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { GlobalStateContext } from 'context/GlobalContext';
 import actions from 'context/actions/globalActions';
-import request from 'utilities/request';
+import request, { setToken } from 'utilities/request';
 import checkLogin from 'utilities/checkLogin';
 import LoginForm from 'containers/Login';
 
@@ -30,11 +30,13 @@ export default function Login() {
       const result = await request('post', '/auth/login', {
         symbol,
       });
-      if (!result.data || !result.data.requestId) {
+      if (!result.data) {
         throw new Error(result);
       }
-
       dispatch({ type: actions.SET_LOADING, payload: false });
+      dispatch({ type: actions.SET_USER, payload: symbol });
+      dispatch({ type: actions.SET_TOKEN, payload: result.data });
+      setToken(result.data, symbol);
       history.push('/dashboard');
     } catch (error) {
       setErrorMessage(

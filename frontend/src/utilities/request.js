@@ -13,11 +13,11 @@ export const setOptions = (newOpts) => {
 };
 
 export const setUser = (user) => {
-  localStorage.setItem(`user`, JSON.stringify(user));
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 export const destroyUser = () => {
-  localStorage.removeItem(`user`);
+  localStorage.removeItem('user');
 };
 
 export const setToken = (token, user, isClient) => {
@@ -25,7 +25,7 @@ export const setToken = (token, user, isClient) => {
   opts.headers = {
     authorization: token,
   };
-  cookies.set(`authorization`, token, {
+  cookies.set('authorization', token, {
     path: '/',
     /*httpOnly: true,*/
   });
@@ -33,7 +33,7 @@ export const setToken = (token, user, isClient) => {
 
 export const destroyToken = (isClient) => {
   destroyUser(isClient);
-  cookies.remove(`authorization`);
+  cookies.remove('authorization');
 };
 
 function expiredSession(response) {
@@ -80,7 +80,7 @@ export default async function request(method, endpoint, dataObj, file) {
     url: `${opts.apiUrl}${endpoint}`,
     data,
     params,
-    headers: opts.headers,
+    // headers: opts.headers,
     withCredentials: true,
     secure: !!opts.apiUrl,
   }).catch((error) => {

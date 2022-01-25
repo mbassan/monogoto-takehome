@@ -5,7 +5,7 @@ import globalActions from './actions/globalActions';
 
 export const INITIAL_STATE = {
   user: getFromLocalStorage('user', true) || {},
-  symbols: getFromLocalStorage('symbols', true) || {},
+  symbols: getFromLocalStorage('symbols', true) || [],
   selectedSymbol: getFromLocalStorage('selectedSymbol', true) || 'BTCUSDT',
   prices: getFromLocalStorage('prices', true) || [],
   depth: getFromLocalStorage('depth', true) || { bid: [], ask: [] },
@@ -20,6 +20,11 @@ export const GlobalStateContext = createContext({
 const setUserHelper = (state, action) => {
   localStorage.setItem('user', JSON.stringify(action.payload));
   return { ...state, user: action.payload };
+};
+
+const setSymbolsHelper = (state, action) => {
+  localStorage.setItem('symbols', JSON.stringify(action.payload));
+  return { ...state, symbols: action.payload };
 };
 
 const appendPricesHelper = (state, action) => {
@@ -46,7 +51,7 @@ export const globalReducer = (state, action) => {
     case globalActions.SET_USER:
       return setUserHelper(state, action);
     case globalActions.SET_SYMBOLS:
-      return { ...state, symbols: action.payload };
+      return setSymbolsHelper(state, action);
     case globalActions.APPEND_PRICES:
       return appendPricesHelper(state, action);
     case globalActions.SET_DEPTH:

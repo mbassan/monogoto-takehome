@@ -6,7 +6,7 @@ import { setOptions } from 'utilities/request';
 import App from 'App';
 import './index.css';
 
-const SERVER_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+const SERVER_URL = process.env.REACT_APP_API_URL || '';
 // TODO: Maybe create a configuration module that will hold some
 // of the constants of the app or maybe create a configuration service.
 window.config = {};

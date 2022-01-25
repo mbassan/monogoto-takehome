@@ -28,11 +28,7 @@ export default async function checkLogin({
 
       // if we did not expect to be logged in, redirect
       if (!expectLoggedIn) {
-        if (isClient || state.workspace?._id) {
-          history.push('/dashboard');
-        } else {
-          history.push('/workspaces');
-        }
+        history.push('/dashboard');
       }
     } else {
       throw new Error('No user data returned.');
