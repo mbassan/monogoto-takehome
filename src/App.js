@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import PrivateRoute from 'containers/PrivateRoute';
 import PageLayout from 'containers/Layout';
 import LoginPage from 'pages/login';
@@ -28,6 +28,9 @@ function App() {
       <NotificationsProvider>
         <PageLayout>
           <Switch>
+            <Route path="/">
+              <LoginPage />
+            </Route>
             <Route path="/login">
               <LoginPage />
             </Route>
