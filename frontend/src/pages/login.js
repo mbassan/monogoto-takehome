@@ -33,6 +33,7 @@ export default function Login() {
       if (!result.data) {
         throw new Error(result);
       }
+      console.log('login', result.data);
       dispatch({ type: actions.SET_LOADING, payload: false });
       dispatch({ type: actions.SET_USER, payload: symbol });
       dispatch({ type: actions.SET_TOKEN, payload: result.data });

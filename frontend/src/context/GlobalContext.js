@@ -30,14 +30,11 @@ const setSymbolsHelper = (state, action) => {
 const appendPricesHelper = (state, action) => {
   const startTime = moment().valueOf() - 30 * 60 * 1000;
   const prevPrices = state.prices.filter((p) => p.t >= startTime);
-  const prices = [...prevPrices, ...action.payload];
-  localStorage.setItem(
-    'prices',
-    JSON.stringify({
-      ...state.user,
-      prices,
-    }),
-  );
+  const prices = [
+    ...prevPrices,
+    { t: action.payload.E, v: parseFloat(action.payload.p) },
+  ];
+  localStorage.setItem('prices', JSON.stringify(prices));
   return { ...state, prices };
 };
 

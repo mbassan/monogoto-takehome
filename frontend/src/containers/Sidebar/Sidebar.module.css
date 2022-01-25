@@ -6,6 +6,9 @@
   width: 350px;
   border-right: var(--nav-border);
   box-shadow: 0 1px 3px 0 rgba(var(--bg-color), 0.04);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 100vh;
 }
 
 .item {

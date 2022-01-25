@@ -20,12 +20,9 @@ export default async function checkLogin({
   // otherwise, see if token is valid and redirect if necessary
   try {
     const result = await request('get', '/auth/user-info', {});
-
+    console.log(result);
     // token still valid
-    if (result.data && result.data.user) {
-      dispatch({ type: actions.SET_USER, payload: result.data.user });
-      setUser(result.data.user);
-
+    if (result.data && result.data === 'OK') {
       // if we did not expect to be logged in, redirect
       if (!expectLoggedIn) {
         history.push('/dashboard');

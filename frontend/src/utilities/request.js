@@ -31,8 +31,8 @@ export const setToken = (token, user, isClient) => {
   });
 };
 
-export const destroyToken = (isClient) => {
-  destroyUser(isClient);
+export const destroyToken = () => {
+  destroyUser();
   cookies.remove('authorization');
 };
 
@@ -80,7 +80,7 @@ export default async function request(method, endpoint, dataObj, file) {
     url: `${opts.apiUrl}${endpoint}`,
     data,
     params,
-    // headers: opts.headers,
+    headers: opts.headers,
     withCredentials: true,
     secure: !!opts.apiUrl,
   }).catch((error) => {

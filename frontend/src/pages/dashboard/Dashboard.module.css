@@ -26,3 +26,25 @@
 .prices {
   height: 50vh;
 }
+
+.orderBook {
+  border-top: 1px solid rgba(var(--primary-color), 0.5);
+  height: calc(50vh - 42px);
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+.orderBook > div {
+  width: 50%;
+  overflow-y: scroll;
+}
+.orderBook > div > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  background-color: rgba(var(--txt-color), 0.01);
+  border-bottom: 1px solid rgba(var(--txt-color), 0.2);
+}
+.orderBook > div > div > div {
+  padding: 7px;
+}
